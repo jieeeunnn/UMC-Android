@@ -12,11 +12,12 @@
             android:id="@+id/home_pannel_background_iv"
             android:layout_width="match_parent"
             android:layout_height="430dp"
-            android:src="@drawable/img_first_album_default"
             android:scaleType="centerCrop"
-            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/img_first_album_default"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/home_pannel_btn_nugu_iv"
@@ -201,7 +202,8 @@
         <ImageView
             android:id="@+id/home_viewpager_exp_iv"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="80dp"
+            android:layout_marginTop="20dp"
             android:src="@drawable/img_home_viewpager_exp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/home_today_music_album_singer_tv"/>
@@ -214,6 +216,7 @@
             android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="@color/black"
+            android:layout_marginTop="20dp"
             android:layout_marginStart="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/home_viewpager_exp_iv"/>
@@ -300,6 +303,16 @@
             android:layout_marginStart="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/home_video_collection_title_tv" />
+
+        <ImageView
+            android:id="@+id/home_discovery_banner_iv"
+            android:layout_width="380dp"
+            android:layout_height="380dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/discovery_banner_aos"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/home_video_collection_singer_tv" />
 
 
 
