@@ -121,6 +121,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="오늘 발매 음악"
+            android:textSize="20sp"
             android:textColor="@color/black"
             android:textStyle="bold"
             android:layout_marginStart="20dp"
@@ -210,7 +211,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="매일 들어도 좋은 팟캐스트"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="@color/black"
             android:layout_marginStart="20dp"
@@ -251,6 +252,57 @@
             android:layout_marginStart="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/home_potcast_title_tv" />
+
+        <TextView
+            android:id="@+id/home_video_collection_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="비디오 콜랙션"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/home_potcast_singer_tv"/>
+        
+        <ImageView
+            android:id="@+id/home_video_collection_video_exp_iv"
+            android:layout_width="230dp"
+            android:layout_height="130dp"
+            android:src="@drawable/img_video_exp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/home_video_collection_tv"/>
+
+        <TextView
+            android:id="@+id/home_video_collection_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="제목"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/home_video_collection_video_exp_iv"/>
+
+        <TextView
+            android:id="@+id/home_video_collection_singer_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="가수"
+            android:textColor="@color/gray_color"
+            android:textSize="15sp"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/home_video_collection_title_tv" />
+
+
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
