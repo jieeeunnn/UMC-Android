@@ -16,4 +16,5 @@
     <color name="select_color">#3f3fff</color>
     <color name="gray_color">#D6D6D6</color>
     <color name="gray_light">#FFE6E6E6</color>
+    <color name="gray_dark">#676767</color>
 </resources>
