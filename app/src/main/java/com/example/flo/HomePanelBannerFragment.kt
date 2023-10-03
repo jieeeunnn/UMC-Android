@@ -5,18 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.flo.databinding.FragmentHomePannelBannerBinding
+import com.example.flo.databinding.FragmentHomePanelBannerBinding
 
-class HomePannelBannerFragment(val imgRes : Int): Fragment() {
-    lateinit var binding: FragmentHomePannelBannerBinding
+class HomePanelBannerFragment(val imgRes : Int): Fragment() {
+    lateinit var binding: FragmentHomePanelBannerBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentHomePannelBannerBinding.inflate(inflater, container, false)
-        binding.homePannelImageIv.setImageResource(imgRes)
+        binding = FragmentHomePanelBannerBinding.inflate(inflater, container, false)
+        binding.homePanelImageIv.setImageResource(imgRes)
 
         return binding.root
     }
