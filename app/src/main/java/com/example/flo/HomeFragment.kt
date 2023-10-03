@@ -29,6 +29,16 @@ class HomeFragment : Fragment() {
         binding.homeBannerVp.adapter = bannerAdapter// viewPager와 Adapter 연결
         binding.homeBannerVp.orientation = ViewPager2.ORIENTATION_HORIZONTAL // ViewPager가 좌우로 스크롤 될 수 있도록 설정
 
+        val pannelAdapter = BannerVPAdapter(this)
+        pannelAdapter.addFragment(HomePannelBannerFragment(R.drawable.img_first_album_default))
+        pannelAdapter.addFragment(HomePannelBannerFragment(R.drawable.img_first_album_default))
+        pannelAdapter.addFragment(HomePannelBannerFragment(R.drawable.img_first_album_default))
+        pannelAdapter.addFragment(HomePannelBannerFragment(R.drawable.img_first_album_default))
+        binding.homePannelBackgroundVp.adapter = pannelAdapter
+        binding.homePannelBackgroundVp.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+
+        binding.homePannelIndicator.setViewPager(binding.homePannelBackgroundVp)
+
         return binding.root
     }
 }
