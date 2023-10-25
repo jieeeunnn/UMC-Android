@@ -20,4 +20,15 @@
         <item name="android:windowTranslucentStatus">true</item>
 
     </style>
+
+    <style name="SplashTheme" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/transparent</item>
+
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher_foreground</item>
+        <item name="windowSplashScreenAnimationDuration">200</item>
+
+        <!--        <item name="android:windowBackground">@drawable/splash</item>-->
+        <!--        <item name="android:statusBarColor">@color/transparent</item>-->
+        <item name="postSplashScreenTheme">@style/Theme.FLO</item>
+    </style>
 </resources>
