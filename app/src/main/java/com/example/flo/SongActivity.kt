@@ -33,9 +33,17 @@ class SongActivity : AppCompatActivity() {
         }
     }
 
+    // 사용자가 포커스를 잃었을 때 음악이 중지
+    override fun onPause() {
+        super.onPause()
+        setPlayerStatus(false)
+    }
+
     override fun onDestroy() { // 앱이 꺼질 때 자동으로 호출되는 함수인 onDestroy()를 통해 timer.interrupt() 호출
         super.onDestroy()
         timer.interrupt()
+        mediaPlayer?.release() // 불필요한 리소스 방지를 위해 mediaPlayer가 갖고 있던 리소스 해제
+        mediaPlayer = null // mediaPlayer 해제
     }
 
     private fun initSong() {
