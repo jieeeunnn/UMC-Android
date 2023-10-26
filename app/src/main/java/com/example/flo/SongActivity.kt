@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.flo.databinding.ActivitySongBinding
+import com.google.gson.Gson
 
 class SongActivity : AppCompatActivity() {
 
@@ -13,6 +14,7 @@ class SongActivity : AppCompatActivity() {
     lateinit var song: Song
     lateinit var timer: Timer
     private var mediaPlayer: MediaPlayer ?= null // 액티비티가 소멸될 때 mediaPlayer를 해제 시켜줘야 하기 때문에 nullable로 설정
+    private var gson: Gson = Gson()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +39,13 @@ class SongActivity : AppCompatActivity() {
     override fun onPause() {
         super.onPause()
         setPlayerStatus(false)
+        song.second = ((binding.songProgressSb.progress * song.playTime) / 100) / 1000 // songActivity에서는 ms로 계산되고 있는데 song에서는 초 단위로 계산되고 있기 때문에 1000으로 나눠줌
+        val sharedPreferences = getSharedPreferences("song", MODE_PRIVATE) // song 데이터를 내부 저장소에 저장하기 위한 sharedPreferences
+        val editor = sharedPreferences.edit() // 에디터
+        val songJson = gson.toJson(song) // song 객체를 Json으로 변환
+        editor.putString("song", songJson)
+
+        editor.apply() // apply()를 해주어야 실제로 저장까지 완료됨
     }
 
     override fun onDestroy() { // 앱이 꺼질 때 자동으로 호출되는 함수인 onDestroy()를 통해 timer.interrupt() 호출
