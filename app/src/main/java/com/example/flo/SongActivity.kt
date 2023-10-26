@@ -1,5 +1,6 @@
 package com.example.flo
 
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -11,6 +12,7 @@ class SongActivity : AppCompatActivity() {
     lateinit var binding: ActivitySongBinding
     lateinit var song: Song
     lateinit var timer: Timer
+    private var mediaPlayer: MediaPlayer ?= null // 액티비티가 소멸될 때 mediaPlayer를 해제 시켜줘야 하기 때문에 nullable로 설정
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +45,8 @@ class SongActivity : AppCompatActivity() {
                 intent.getStringExtra("title")!!,
                 intent.getIntExtra("second", 0),
                 intent.getIntExtra("playTime", 0),
-                intent.getBooleanExtra("isPlaying", false)
+                intent.getBooleanExtra("isPlaying", false),
+                intent.getStringExtra("music")!!
             )
         }
         startTimer()
@@ -56,19 +59,26 @@ class SongActivity : AppCompatActivity() {
         binding.songEndTimeTv.text = String.format("%02d:%02d", song.playTime / 60, song.playTime / 60)
         binding.songProgressSb.progress = (song.second * 1000 / song.playTime)
 
+        val music = resources.getIdentifier(song.music,"raw", this.packageName) // 재생할 음악 리소스
+        mediaPlayer = MediaPlayer.create(this, music) // 재생할 음악 리소스를 MediaPlayer에 전달
+
         setPlayerStatus(song.isPlaying)
     }
-    fun setPlayerStatus(isPlaying: Boolean) {
+    fun setPlayerStatus(isPlaying: Boolean) { // 버튼에 따라 음악을 재생/정지
         song.isPlaying = isPlaying
         timer.isPlaying = isPlaying
 
         if (isPlaying) {
             binding.songMiniplayerIv.visibility = View.GONE
             binding.songPauseIv.visibility = View.VISIBLE
+            mediaPlayer?.start()
         }
         else {
             binding.songMiniplayerIv.visibility = View.VISIBLE
             binding.songPauseIv.visibility = View.GONE
+            if (mediaPlayer?.isPlaying == true) { // mediaPlayer가 재생중이 아닐 때 pause를 하면 오류가 생길 수 있으므로 if문 추가
+                mediaPlayer?.pause()
+            }
         }
     }
 
