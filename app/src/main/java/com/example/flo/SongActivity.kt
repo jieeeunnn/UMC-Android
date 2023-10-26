@@ -43,7 +43,7 @@ class SongActivity : AppCompatActivity() {
         val sharedPreferences = getSharedPreferences("song", MODE_PRIVATE) // song 데이터를 내부 저장소에 저장하기 위한 sharedPreferences
         val editor = sharedPreferences.edit() // 에디터
         val songJson = gson.toJson(song) // song 객체를 Json으로 변환
-        editor.putString("song", songJson)
+        editor.putString("songData", songJson)
 
         editor.apply() // apply()를 해주어야 실제로 저장까지 완료됨
     }

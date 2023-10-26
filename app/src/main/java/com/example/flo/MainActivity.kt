@@ -5,10 +5,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.example.flo.databinding.ActivityMainBinding
+import com.google.gson.Gson
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityMainBinding
+    private var song: Song = Song()
+    private var gson: Gson = Gson()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,8 +19,6 @@ class MainActivity : AppCompatActivity() {
         setTheme(R.style.Theme_FLO) // manifest 파일에서 시작 테마가 SplashTheme로 설정되어 있으므로 onCreate가 시작되면 테마가 Theme_FLO로 설정되도록 해줌
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        val song = Song(binding.mainMiniplayerTitleTv.text.toString(), binding.mainMiniplayerSingerTv.text.toString(), 0, 60, false, "music_lilac")
 
         binding.mainPlayerCl.setOnClickListener{
             //startActivity(Intent(this, SongActivity::class.java))
@@ -73,5 +74,27 @@ class MainActivity : AppCompatActivity() {
             }
             false
         }
+    }
+
+    private fun setMiniPlayer(song: Song) {
+        binding.mainMiniplayerTitleTv.text = song.title
+        binding.mainMiniplayerSingerTv.text = song.singer
+        binding.mainMiniplayerProgressSb.progress = (song.second*100000) / song.playTime
+    }
+
+    override fun onStart() {
+        super.onStart()
+        // 액티비티 전환 시 onStart()부터 시작되기 때문에 onStart()에 작성
+        val sharedPreferences = getSharedPreferences("song", MODE_PRIVATE)
+        val songJson = sharedPreferences.getString("songData", null)
+
+        song = if (songJson == null) {
+            Song("라일락", "아이유(IU)", 0, 60, false, "music_lilac")
+        } else {
+            gson.fromJson(songJson, Song::class.java) // Json 형태를 java 객체로 변환
+        }
+
+        setMiniPlayer(song)
+
     }
 }
