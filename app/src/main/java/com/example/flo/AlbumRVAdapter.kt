@@ -8,7 +8,7 @@ import com.example.flo.databinding.ItemAlbumBinding
 class AlbumRVAdapter(private val albumList: ArrayList<Album>): RecyclerView.Adapter<AlbumRVAdapter.ViewHolder>() {
 
     interface MyItemClickListener{
-        fun onItemClick()
+        fun onItemClick(album: Album)
     }
 
     private lateinit var mItemClickListener: MyItemClickListener
@@ -25,7 +25,7 @@ class AlbumRVAdapter(private val albumList: ArrayList<Album>): RecyclerView.Adap
     override fun onBindViewHolder(holder: AlbumRVAdapter.ViewHolder, position: Int) { // 뷰 홀더에 데이터를 바인딩 해줘야 할 때마다 호출
         holder.bind(albumList[position])
         holder.itemView.setOnClickListener {
-            mItemClickListener.onItemClick()
+            mItemClickListener.onItemClick(albumList[position])
         }
     }
 

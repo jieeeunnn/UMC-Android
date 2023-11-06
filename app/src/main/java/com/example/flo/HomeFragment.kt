@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.flo.databinding.FragmentHomeBinding
+import com.google.gson.Gson
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.concurrent.scheduleAtFixedRate
@@ -43,12 +44,9 @@ class HomeFragment : Fragment() {
         binding.homeTodayMusicAlbumRv.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)// 레이아웃 매니저 설정
 
         albumRVAdapter.setMyItemClickListener(object : AlbumRVAdapter.MyItemClickListener{
-            override fun onItemClick() { // 아이템 클릭 시 앨범 프래그먼트 화면으로 전환
-                (context as MainActivity).supportFragmentManager.beginTransaction()
-                    .replace(R.id.main_frm, AlbumFragment())
-                    .commitAllowingStateLoss()
+            override fun onItemClick(album: Album) { // 아이템 클릭 시 앨범 프래그먼트 화면으로 전환
+                changeAlbumFragment(album)
             }
-
         })
 
         val bannerAdapter = BannerVPAdapter(this) // Adapter를 이용해 데이터를 가져옴
@@ -69,6 +67,18 @@ class HomeFragment : Fragment() {
         startAutoSlide(panelAdapter)
 
         return binding.root
+    }
+
+    private fun changeAlbumFragment(album: Album) {
+        (context as MainActivity).supportFragmentManager.beginTransaction()
+            .replace(R.id.main_frm, AlbumFragment().apply {
+                arguments = Bundle().apply {
+                    val gson = Gson()
+                    val albumJson = gson.toJson(album)
+                    putString("album", albumJson)
+                }
+            })
+            .commitAllowingStateLoss()
     }
 
     private fun startAutoSlide(adpater : BannerVPAdapter) {
