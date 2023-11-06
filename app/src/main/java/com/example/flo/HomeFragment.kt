@@ -28,10 +28,6 @@ class HomeFragment : Fragment() {
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-//        binding.homeTodayMusicAlbumIv.setOnClickListener {
-//            (context as MainActivity).supportFragmentManager.beginTransaction().replace(R.id.main_frm,AlbumFragment()).commitAllowingStateLoss()
-//        }
-
         // 데이터 리스트 생성 더미 데이터
         albumDatas.apply {
             add(Album("Butter", "방탄소년단 (BTS)", R.drawable.img_album_exp))
@@ -45,6 +41,15 @@ class HomeFragment : Fragment() {
         val albumRVAdapter = AlbumRVAdapter(albumDatas) // 어댑터와 dataList 연결
         binding.homeTodayMusicAlbumRv.adapter = albumRVAdapter // recyclerView에 Adapter 연결
         binding.homeTodayMusicAlbumRv.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)// 레이아웃 매니저 설정
+
+        albumRVAdapter.setMyItemClickListener(object : AlbumRVAdapter.MyItemClickListener{
+            override fun onItemClick() { // 아이템 클릭 시 앨범 프래그먼트 화면으로 전환
+                (context as MainActivity).supportFragmentManager.beginTransaction()
+                    .replace(R.id.main_frm, AlbumFragment())
+                    .commitAllowingStateLoss()
+            }
+
+        })
 
         val bannerAdapter = BannerVPAdapter(this) // Adapter를 이용해 데이터를 가져옴
         bannerAdapter.addFragment(BannerFragment(R.drawable.img_home_viewpager_exp))
