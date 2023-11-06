@@ -47,6 +47,10 @@ class HomeFragment : Fragment() {
             override fun onItemClick(album: Album) { // 아이템 클릭 시 앨범 프래그먼트 화면으로 전환
                 changeAlbumFragment(album)
             }
+
+            override fun onRemoveAlbum(position: Int) {
+                albumRVAdapter.removeItem(position)
+            }
         })
 
         val bannerAdapter = BannerVPAdapter(this) // Adapter를 이용해 데이터를 가져옴
