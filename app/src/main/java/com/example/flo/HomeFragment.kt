@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.flo.databinding.FragmentHomeBinding
 import java.util.*
@@ -40,6 +41,10 @@ class HomeFragment : Fragment() {
             add(Album("BBoom BBoom", "모모랜드 (MOMOLAND)", R.drawable.img_album_exp5))
             add(Album("Weekend", "태연 (Tae Yeon)", R.drawable.img_album_exp6))
         }
+
+        val albumRVAdapter = AlbumRVAdapter(albumDatas) // 어댑터와 dataList 연결
+        binding.homeTodayMusicAlbumRv.adapter = albumRVAdapter // recyclerView에 Adapter 연결
+        binding.homeTodayMusicAlbumRv.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)// 레이아웃 매니저 설정
 
         val bannerAdapter = BannerVPAdapter(this) // Adapter를 이용해 데이터를 가져옴
         bannerAdapter.addFragment(BannerFragment(R.drawable.img_home_viewpager_exp))
