@@ -21,8 +21,8 @@ class LockerFragment : Fragment() {
         binding = FragmentLockerBinding.inflate(inflater, container, false)
 
         val lockerAdapter = LockerVPAdapter(this)
-        binding.lockVp.adapter = lockerAdapter
-        TabLayoutMediator(binding.lockTb, binding.lockVp) { // tabLayout과 viewPager 연결
+        binding.lockerContentVp.adapter = lockerAdapter
+        TabLayoutMediator(binding.lockerContentTb, binding.lockerContentVp) { // tabLayout과 viewPager 연결
             tab, position ->
             tab.text = locker[position]
         }.attach()
