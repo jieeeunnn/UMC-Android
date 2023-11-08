@@ -30,11 +30,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="LILAC"
-        android:textSize="12sp"
+        android:textSize="15sp"
         android:textStyle="bold"
         android:textColor="@color/black"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="5dp"
         app:layout_constraintStart_toEndOf="@id/item_song_img_cardView"
         app:layout_constraintTop_toTopOf="@id/item_song_img_cardView" />
 
@@ -43,8 +43,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="아이유"
-        android:textSize="10sp"
-        android:layout_marginTop="5dp"
+        android:textSize="12sp"
+        android:layout_marginTop="2dp"
         app:layout_constraintStart_toStartOf="@+id/item_song_title_tv"
         app:layout_constraintTop_toBottomOf="@+id/item_song_title_tv"/>
 
