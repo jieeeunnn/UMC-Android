@@ -22,4 +22,10 @@ interface SongDao {
 
     @Query("SELECT * FROM SongTable WHERE id = :id")
     fun getSong(id: Int): Song
+
+    @Query("UPDATE SongTable SET isLike= :isLike WHERE id = :id") // 좋아요 업데이트
+    fun updateIsLikeById(isLike: Boolean, id: Int)
+
+    @Query("SELECT * FROM SongTable WHERE isLike= :isLike") // 좋아요가 눌려있는 곡들만 리턴
+    fun getLikedSongs(isLike: Boolean): List<Song>
 }
