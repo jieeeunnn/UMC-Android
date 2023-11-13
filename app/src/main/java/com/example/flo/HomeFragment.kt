@@ -3,9 +3,11 @@ package com.example.flo
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
@@ -48,8 +50,12 @@ class HomeFragment : Fragment() {
                 changeAlbumFragment(album)
             }
 
-            override fun onRemoveAlbum(position: Int) {
+            override fun onRemoveAlbum(position: Int) { // 더보기 버튼 클릭 시 아이템 삭제
                 albumRVAdapter.removeItem(position)
+            }
+
+            override fun onSetMiniPlayer(album: Album) {
+                setMainMiniPlayer(album)
             }
         })
 
@@ -97,5 +103,9 @@ class HomeFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun setMainMiniPlayer(album: Album) {
+
     }
 }
