@@ -10,6 +10,7 @@ class AlbumRVAdapter(private val albumList: ArrayList<Album>): RecyclerView.Adap
     interface MyItemClickListener{
         fun onItemClick(album: Album)
         fun onRemoveAlbum(position: Int)
+        fun onSetMiniPlayer(album: Album)
     }
 
     private lateinit var mItemClickListener: MyItemClickListener
@@ -26,6 +27,7 @@ class AlbumRVAdapter(private val albumList: ArrayList<Album>): RecyclerView.Adap
         albumList.removeAt(position)
         notifyDataSetChanged()
     }
+
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): AlbumRVAdapter.ViewHolder { // 뷰 홀더를 생성할 때 호출
         // 아이템 뷰 객체를 만들고 이를 재활용 하기 위해 뷰 홀더에 던져줌
         val binding: ItemAlbumBinding = ItemAlbumBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
@@ -39,6 +41,7 @@ class AlbumRVAdapter(private val albumList: ArrayList<Album>): RecyclerView.Adap
             mItemClickListener.onItemClick(albumList[position])
         }
         //holder.binding.itemAlbumTitleTv.setOnClickListener { mItemClickListener.onRemoveAlbum(position) }
+        holder.binding.itemAlbumPlayImgIv.setOnClickListener { mItemClickListener.onSetMiniPlayer(albumList[position]) }
     }
 
     override fun getItemCount(): Int = albumList.size // 데이터 세트의 크기를 알려주는 함수. recyclerView의 마지막이 언제인지를 알게 해줌
